@@ -28,7 +28,7 @@ int main()
     inserirNumero(22, p);
     inserirNumero(54, p);
 
-    destroiVetorInteiro(p);
+    //destroiVetorInteiro(p);
 
     printf("Tamanho: %d\n", p->tam);
     printf("Quantidade: %d\n", p->qtd);
