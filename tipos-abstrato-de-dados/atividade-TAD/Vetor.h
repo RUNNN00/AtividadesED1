@@ -1,3 +1,6 @@
+#ifndef _TAD_VETOR_
+#define _TAD_VETOR_
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
@@ -22,3 +25,5 @@ int vet_posicao(Vetor *v, int elemento);
 void vet_imprimir(Vetor *v);
 void vet_desalocar(Vetor **endVetor);
 bool vet_toString(Vetor *v, char *saida);
+
+#endif
