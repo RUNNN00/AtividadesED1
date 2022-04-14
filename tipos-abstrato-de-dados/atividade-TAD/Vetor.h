@@ -21,9 +21,9 @@ bool vet_removerPosicao(Vetor *v, int posicao, int *endereco);
 int vet_removerElemento(Vetor *v, int elemento);
 int vet_tamanho(Vetor *v);
 bool vet_elemento(Vetor *v, int posicao, int *saida);
-int vet_posicao(Vetor *v, int elemento);
+// int vet_posicao(Vetor *v, int elemento);
 void vet_imprimir(Vetor *v);
 void vet_desalocar(Vetor **endVetor);
-bool vet_toString(Vetor *v, char *saida);
+// bool vet_toString(Vetor *v, char *saida);
 
 #endif

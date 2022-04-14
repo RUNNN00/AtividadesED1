@@ -18,7 +18,7 @@ int espacoLivre(Vetor *v)
     return v->tam - v->qtd;
 }
 
-void definirQtd(int *qtd, int elemento)
+void addQtd(int *qtd, int elemento)
 {
     if (elemento != 0)
         *qtd += 1;
@@ -67,7 +67,7 @@ bool vet_anexar(Vetor *v, int elemento)
     }
 
     v->vet[v->qtd] = elemento;
-    definirQtd(&(v->qtd), elemento);
+    addQtd(&(v->qtd), elemento);
 
     return true;
 }
@@ -101,24 +101,23 @@ bool vet_inserir(Vetor *v, int elemento, int posicao)
     }
 
     v->vet[posicao] = elemento;
-    v->qtd++;
+    addQtd(&(v->qtd), elemento);
     return true;
 }
 
 bool vet_substituir(Vetor *v, int posicao, int novoElemento)
 {
-    if (v->tam > posicao)
-    {
-        v->vet[posicao] = novoElemento;
-        return true;
-    }
+    if (v->tam <= posicao)
+        return false;
 
-    return false;
+    v->vet[posicao] = novoElemento;
+
+    return true;
 }
 
 void vet_imprimir(Vetor *v)
 {
-    printf("tam: %d\n", v->tam);
+    printf("tam: %d\n", vet_tamanho(v));
     printf("qtd: %d\n", v->qtd);
     printf("[");
     for (int i = 0; i < v->tam; i++)
@@ -129,4 +128,52 @@ void vet_imprimir(Vetor *v)
             printf(", ");
     }
     printf("]\n");
+}
+
+bool vet_removerPosicao(Vetor *v, int posicao, int *endereco)
+{
+    if (v->tam <= posicao)
+        return false;
+
+    *endereco = v->vet[posicao];
+    v->vet[posicao] = 0;
+    v->qtd--;
+
+    return true;
+}
+
+int vet_removerElemento(Vetor *v, int elemento)
+{
+    for (int i = 0; i < v->tam; i++)
+    {
+        if (v->vet[i] == elemento)
+        {
+            v->vet[i] = 0;
+            v->qtd--;
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+int vet_tamanho(Vetor *v)
+{
+    return v->tam;
+}
+
+bool vet_elemento(Vetor *v, int posicao, int *saida)
+{
+    if (v->tam <= posicao)
+        return false;
+
+    *saida = v->vet[posicao];
+
+    return true;
+}
+
+void vet_desalocar(Vetor **endVetor)
+{
+    free(*endVetor);
+    *endVetor = NULL;
 }
