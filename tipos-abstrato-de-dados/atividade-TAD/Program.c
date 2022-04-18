@@ -34,5 +34,9 @@ int main()
     }
     printf("\n");
 
+    char str[200];
+	vet_toString(v, str);
+	printf("%s\n", str); //[5,15,20,30]
+
     return 0;
 }

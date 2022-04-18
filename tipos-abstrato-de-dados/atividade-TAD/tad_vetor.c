@@ -172,8 +172,50 @@ bool vet_elemento(Vetor *v, int posicao, int *saida)
     return true;
 }
 
+int vet_posicao(Vetor *v, int elemento)
+{
+    for (int i = 0; i < v->tam; i++)
+    {
+        if (v->vet[i] == elemento)
+            return i;
+    }
+
+    return -1;
+}
+
 void vet_desalocar(Vetor **endVetor)
 {
     free(*endVetor);
     *endVetor = NULL;
+}
+
+bool vet_toString(Vetor *v, char *saida)
+{
+    int tamChar = v->tam * 2 + 1;
+    // saida = (char *)malloc(sizeof(char) * tamChar);
+
+    if (saida == NULL || v->tam == 0)
+        return false;
+
+    saida[0] = '[';
+    int j = 1;
+    for (int i = 1; i < tamChar; i++)
+    {
+        if (i % 2 == 1)
+        {
+            // saida[i] = v->vet[i - j] + '0';
+            saida[i] = '0';
+            j++;
+        }
+        else
+        {
+            if (i < tamChar - 2)
+                saida[i] = ',';
+        }
+    }
+    saida[tamChar - 1] = ']';
+    saida[tamChar] = '\0';
+    vet_imprimir(v);
+
+    return true;
 }
