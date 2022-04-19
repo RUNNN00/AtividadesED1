@@ -192,30 +192,18 @@ void vet_desalocar(Vetor **endVetor)
 bool vet_toString(Vetor *v, char *saida)
 {
     int tamChar = v->tam * 2 + 1;
-    // saida = (char *)malloc(sizeof(char) * tamChar);
 
     if (saida == NULL || v->tam == 0)
         return false;
 
     saida[0] = '[';
-    int j = 1;
+    int j = 0;
     for (int i = 1; i < tamChar; i++)
     {
-        if (i % 2 == 1)
-        {
-            // saida[i] = v->vet[i - j] + '0';
-            saida[i] = '0';
-            j++;
-        }
-        else
-        {
-            if (i < tamChar - 2)
-                saida[i] = ',';
-        }
+        sprintf(saida, "%d,", 2);
     }
     saida[tamChar - 1] = ']';
     saida[tamChar] = '\0';
-    vet_imprimir(v);
 
     return true;
 }
