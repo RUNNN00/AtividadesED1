@@ -19,6 +19,10 @@ int main()
     vet_imprimir(v); // [5,10,15,20,30]
     printf("\n");
 
+    vet_anexar(v, 7);
+    vet_imprimir(v); // [5,10,15,20,30, 7]
+    printf("\n");
+
     int elemento;
     if (vet_removerPosicao(v, 1, &elemento))
     {

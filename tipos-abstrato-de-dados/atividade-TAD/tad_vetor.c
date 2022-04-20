@@ -136,7 +136,11 @@ bool vet_removerPosicao(Vetor *v, int posicao, int *endereco)
         return false;
 
     *endereco = v->vet[posicao];
-    v->vet[posicao] = 0;
+    for (int i = posicao; i < v->tam; i++)
+    {
+        v->vet[i] = v->vet[i + 1];
+        v->vet[i + 1] = 0;
+    }
     v->qtd--;
 
     return true;
@@ -148,7 +152,11 @@ int vet_removerElemento(Vetor *v, int elemento)
     {
         if (v->vet[i] == elemento)
         {
-            v->vet[i] = 0;
+            for (int j = i; j < v->tam; j++)
+            {
+                v->vet[j] = v->vet[j + 1];
+                v->vet[j + 1] = 0;
+            }
             v->qtd--;
             return i;
         }
@@ -191,19 +199,15 @@ void vet_desalocar(Vetor **endVetor)
 
 bool vet_toString(Vetor *v, char *saida)
 {
-    int tamChar = v->tam * 2 + 1;
-
-    if (saida == NULL || v->tam == 0)
-        return false;
-
-    saida[0] = '[';
-    int j = 0;
-    for (int i = 1; i < tamChar; i++)
+    saida[0] = '\0';
+    strcat(saida, "[");
+    for (int i = 0; i < v->qtd; i++)
     {
-        sprintf(saida, "%d,", 2);
+        char *elemento;
+        sprintf(elemento, "%d", v->vet[i]);
+        strcat(saida, elemento);
+        if (i < v->qtd - 1)
+            strcat(saida, ",");
     }
-    saida[tamChar - 1] = ']';
-    saida[tamChar] = '\0';
-
-    return true;
+    strcat(saida, "]");
 }
