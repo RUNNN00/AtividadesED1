@@ -136,7 +136,7 @@ bool vet_removerPosicao(Vetor *v, int posicao, int *endereco)
         return false;
 
     *endereco = v->vet[posicao];
-    for (int i = posicao; i < v->tam; i++)
+    for (int i = posicao; i < v->tam - 1; i++)
     {
         v->vet[i] = v->vet[i + 1];
         v->vet[i + 1] = 0;
@@ -152,7 +152,7 @@ int vet_removerElemento(Vetor *v, int elemento)
     {
         if (v->vet[i] == elemento)
         {
-            for (int j = i; j < v->tam; j++)
+            for (int j = i; j < v->tam - 1; j++)
             {
                 v->vet[j] = v->vet[j + 1];
                 v->vet[j + 1] = 0;
